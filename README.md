@@ -8,6 +8,19 @@ Este é um projeto de API construído com .NET 5, utilizando Entity Framework Co
 - SQL Server (ou SQL Server LocalDB)
 - Visual Studio ou qualquer editor de código com suporte a .NET
 
+- ## Dependências do Projeto
+
+Antes de executar o projeto, certifique-se de que as seguintes dependências estejam instaladas:
+
+- `BCrypt` versão 1.0.0
+- `BCrypt.Net` versão 0.1.0
+- `Microsoft.AspNetCore.Authentication.JwtBearer` versão 5.0.17
+- `Microsoft.AspNetCore.Components` versão 5.0.17
+- `Microsoft.EntityFrameworkCore` versão 5.0.17
+- `Microsoft.EntityFrameworkCore.SqlServer` versão 5.0.17
+- `Microsoft.EntityFrameworkCore.Tools` versão 5.0.17
+- `Swashbuckle.AspNetCore` versão 6.2.1
+
 ## Configuração do Projeto
 
 ### 1. Clone o Repositório
