@@ -14,22 +14,22 @@ Este é um projeto de API construído com .NET 5, utilizando Entity Framework Co
 
 Clone este repositório para sua máquina local:
 
-bash
+```bash
 git clone https://github.com/SeuUsuario/seu-repositorio.git
 cd seu-repositorio
-
+```
 
 ### 2. Configurar o Banco de Dados
 Certifique-se de ter o SQL Server ou SQL Server LocalDB instalado.
 
 - 2.1. Configurar a String de Conexão
 - Abra o arquivo appsettings.json e configure a string de conexão para o seu banco de dados SQL Server. A configuração padrão é:
-bash
+```bash
 json
 "ConnectionStrings": {
   "CLIENT": "server=DESKTOP-TPTBQMU; database=APIClientDB; Integrated Security=True; MultipleActiveResultSets=true; TrustServerCertificate=True;"
 }
-
+```
 Substitua os valores server e database conforme necessário para o seu ambiente.
 
 ### 2.2. Criar o Banco de Dados
@@ -37,21 +37,21 @@ Para criar o banco de dados e aplicar as migrations, siga os passos abaixo:
 
 #### 1. Abra o Console do Gerenciador de Pacotes no Visual Studio ou use o terminal com o comando:
 
-bash
+```bash
 dotnet ef migrations add InitialCreate
-
+```
 Atualize o banco de dados com a migration criada:
-bash
+```bash
 dotnet ef database update
-
+```
 Estes comandos criarão as tabelas e aplicarão as configurações iniciais ao banco de dados.
 
 #### 3. Executar o Projeto
 Para rodar o projeto localmente, execute o seguinte comando na raiz do projeto:
 
-bash
+```bash
 dotnet run
-
+```
 #### O projeto será iniciado no https://localhost:5001 (ou no URL especificado no seu ambiente).
 
 ### Testando a API
