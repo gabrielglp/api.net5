@@ -10,17 +10,6 @@ Este é um projeto de API construído com .NET 5, utilizando Entity Framework Co
 
 - ## Dependências do Projeto
 
-Antes de executar o projeto, certifique-se de que as seguintes dependências estejam instaladas:
-
-- `BCrypt` versão 1.0.0
-- `BCrypt.Net` versão 0.1.0
-- `Microsoft.AspNetCore.Authentication.JwtBearer` versão 5.0.17
-- `Microsoft.AspNetCore.Components` versão 5.0.17
-- `Microsoft.EntityFrameworkCore` versão 5.0.17
-- `Microsoft.EntityFrameworkCore.SqlServer` versão 5.0.17
-- `Microsoft.EntityFrameworkCore.Tools` versão 5.0.17
-- `Swashbuckle.AspNetCore` versão 6.2.1
-
 ## Configuração do Projeto
 
 ### 1. Clone o Repositório
@@ -58,6 +47,17 @@ Atualize o banco de dados com a migration criada:
 dotnet ef database update
 ```
 Estes comandos criarão as tabelas e aplicarão as configurações iniciais ao banco de dados.
+
+Antes de executar o projeto, certifique-se de que as seguintes dependências estejam instaladas:
+
+- `BCrypt` versão 1.0.0
+- `BCrypt.Net` versão 0.1.0
+- `Microsoft.AspNetCore.Authentication.JwtBearer` versão 5.0.17
+- `Microsoft.AspNetCore.Components` versão 5.0.17
+- `Microsoft.EntityFrameworkCore` versão 5.0.17
+- `Microsoft.EntityFrameworkCore.SqlServer` versão 5.0.17
+- `Microsoft.EntityFrameworkCore.Tools` versão 5.0.17
+- `Swashbuckle.AspNetCore` versão 6.2.1
 
 #### 3. Executar o Projeto
 Para rodar o projeto localmente, execute o seguinte comando na raiz do projeto:
