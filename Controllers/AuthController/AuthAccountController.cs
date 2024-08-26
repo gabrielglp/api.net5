@@ -44,15 +44,16 @@ namespace api.net5.Controllers.AuthController
 
             try
             {
-                // verifica se o email ja esta registrado
-                var existingUser = await _context.registrationModels
-                    .SingleOrDefaultAsync(u => u.Email == registrationModel.Email);
+                // verifica se o email já está registrado
+                bool emailAlreadyRegistered = await _context.registrationModels
+                    .AnyAsync(u => u.Email == registrationModel.Email);
 
-                if (existingUser != null)
+                if (emailAlreadyRegistered)
                 {
                     return Conflict(new { message = "Email already registered." });
                 }
 
+                // criptografa a senha antes de armazenar no banco de dados
                 registrationModel.Password = BCrypt.Net.BCrypt.HashPassword(registrationModel.Password);
 
                 _context.registrationModels.Add(registrationModel);
@@ -67,9 +68,9 @@ namespace api.net5.Controllers.AuthController
 
                 return CreatedAtAction(nameof(Register), new { id = registrationModel.UserId }, response);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, $"An error occurred on the server");
             }
         }
 
@@ -96,24 +97,15 @@ namespace api.net5.Controllers.AuthController
                         (isEmail && u.Email == loginRequest.Email) ||
                         (!isEmail && u.UserName == loginRequest.Email));
 
-                if (user == null || !BCrypt.Net.BCrypt.Verify(loginRequest.Password, user.Password))
+                bool isUserNotFound = user == null;
+                bool isPasswordInvalid = !BCrypt.Net.BCrypt.Verify(loginRequest.Password, user?.Password);
+
+                if (isUserNotFound || isPasswordInvalid)
                 {
                     return BadRequest(new { message = "Email or password is incorrect." });
                 }
 
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]);
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
-                        new Claim(ClaimTypes.Name, user.Email)
-                    }),
-                    Expires = DateTime.UtcNow.AddHours(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                };
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                var tokenString = tokenHandler.WriteToken(token);
+                var tokenString = GenerateJwtToken(user.Email);
 
                 var response = new
                 {
@@ -128,10 +120,27 @@ namespace api.net5.Controllers.AuthController
 
                 return Ok(response);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
+                return StatusCode(500, new { message = $"An error occurred on the server" });
             }
+        }
+
+        private string GenerateJwtToken(string email)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, email)
+                }),
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
     }
 }

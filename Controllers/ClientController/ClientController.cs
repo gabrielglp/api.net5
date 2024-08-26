@@ -26,7 +26,7 @@ namespace api.net5.Controllers
         [HttpGet]
         public async Task<IActionResult> GetClientes()
         {
-            var clientes = await _context.clientes
+            var clients = await _context.clients
                 .Select(c => new ClientDTO
                 {
                     ClienteId = c.ClienteId,
@@ -42,13 +42,13 @@ namespace api.net5.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(clientes);
+            return Ok(clients);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCliente(int id)
         {
-            var cliente = await _context.clientes
+            var cliente = await _context.clients
                 .Where(c => c.ClienteId == id)
                 .Select(c => new ClientDTO
                 {
@@ -85,17 +85,17 @@ namespace api.net5.Controllers
             {
                 try
                 {
-                    _context.clientes.Add(cliente);
+                    _context.clients.Add(cliente);
                     await _context.SaveChangesAsync();
 
                     await transaction.CommitAsync();
 
                     return CreatedAtAction(nameof(GetCliente), new { id = cliente.ClienteId }, cliente);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     await transaction.RollbackAsync();
-                    return StatusCode(500, $"Internal server error: {ex.Message}");
+                    return StatusCode(500, "Ocorreu um erro no servidor.");
                 }
             }
         }
@@ -113,7 +113,7 @@ namespace api.net5.Controllers
             {
                 try
                 {
-                    var existingCliente = await _context.clientes.FindAsync(id);
+                    var existingCliente = await _context.clients.FindAsync(id);
                     if (existingCliente == null)
                     {
                         return NotFound();
@@ -138,10 +138,10 @@ namespace api.net5.Controllers
                         throw;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     await transaction.RollbackAsync();
-                    return StatusCode(500, $"Internal server error: {ex.Message}");
+                    return StatusCode(500, "Ocorreu um erro no servidor.");
                 }
             }
         }
@@ -149,14 +149,14 @@ namespace api.net5.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCliente(int id)
         {
-            var cliente = await _context.clientes.FindAsync(id);
+            var cliente = await _context.clients.FindAsync(id);
 
             if (cliente == null)
             {
                 return NotFound();
             }
 
-            _context.clientes.Remove(cliente);
+            _context.clients.Remove(cliente);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -165,7 +165,7 @@ namespace api.net5.Controllers
         [HttpGet("search")]
         public async Task<IActionResult> SearchClientes([FromQuery] string cpf = null, [FromQuery] string name = null)
         {
-            var query = _context.clientes.AsQueryable();
+            var query = _context.clients.AsQueryable();
 
             if (!string.IsNullOrEmpty(cpf))
             {
@@ -177,7 +177,7 @@ namespace api.net5.Controllers
                 query = query.Where(c => c.Name.Contains(name));
             }
 
-            var clientes = await query
+            var clients = await query
                 .Select(c => new ClientDTO
                 {
                     ClienteId = c.ClienteId,
@@ -193,12 +193,12 @@ namespace api.net5.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(clientes);
+            return Ok(clients);
         }
 
         private bool ClienteExists(int id)
         {
-            return _context.clientes.Any(e => e.ClienteId == id);
+            return _context.clients.Any(e => e.ClienteId == id);
         }
     }
 }

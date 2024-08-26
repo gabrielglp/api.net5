@@ -20,7 +20,7 @@ public class ClientService
         {
             try
             {
-                _context.clientes.Add(client);
+                _context.clients.Add(client);
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
             }

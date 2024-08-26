@@ -14,7 +14,7 @@ namespace api.net5.Context
 
         public DbSet<RegistrationModel> registrationModels { get; set; }
         public DbSet<LoginModel> loginModels { get; set; }
-        public DbSet<ClientModel> clientes { get; set; }
+        public DbSet<ClientModel> clients { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
