@@ -33,13 +33,13 @@
     ".NETCoreApp,Version=v5.0": {
       "api.net5/1.0.0": {
         "dependencies": {
-          "BCrypt": "1.0.0",
           "BCrypt.Net": "0.1.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.17",
           "Microsoft.AspNetCore.Components": "5.0.17",
           "Microsoft.EntityFrameworkCore": "5.0.17",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.17",
+          "Microsoft.Extensions.Diagnostics.HealthChecks": "5.0.17",
           "Swashbuckle.AspNetCore": "6.7.1",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -130,14 +130,12 @@
           "Microsoft.Extensions.Configuration.UserSecrets": "5.0.0.0",
           "Microsoft.Extensions.Configuration.Xml": "5.0.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions.Reference": "5.0.0.0",
-          "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "5.0.0.0",
-          "Microsoft.Extensions.Diagnostics.HealthChecks": "5.0.0.0",
-          "Microsoft.Extensions.FileProviders.Abstractions": "5.0.0.0",
+          "Microsoft.Extensions.FileProviders.Abstractions.Reference": "5.0.0.0",
           "Microsoft.Extensions.FileProviders.Composite": "5.0.0.0",
           "Microsoft.Extensions.FileProviders.Embedded": "5.0.0.0",
           "Microsoft.Extensions.FileProviders.Physical": "5.0.0.0",
           "Microsoft.Extensions.FileSystemGlobbing": "5.0.0.0",
-          "Microsoft.Extensions.Hosting.Abstractions": "5.0.0.0",
+          "Microsoft.Extensions.Hosting.Abstractions.Reference": "5.0.0.0",
           "Microsoft.Extensions.Hosting": "5.0.0.0",
           "Microsoft.Extensions.Http": "5.0.0.0",
           "Microsoft.Extensions.Identity.Core": "5.0.0.0",
@@ -325,17 +323,6 @@
         },
         "compile": {
           "api.net5.dll": {}
-        }
-      },
-      "BCrypt/1.0.0": {
-        "runtime": {
-          "lib/DevOne.Security.Cryptography.BCrypt.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "lib/DevOne.Security.Cryptography.BCrypt.dll": {}
         }
       },
       "BCrypt.Net/0.1.0": {
@@ -612,6 +599,46 @@
         }
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {},
+      "Microsoft.Extensions.Diagnostics.HealthChecks/5.0.17": {
+        "dependencies": {
+          "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "5.0.17",
+          "Microsoft.Extensions.Hosting.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Options": "5.0.0"
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.1722.21507"
+          }
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/5.0.17": {
+        "runtime": {
+          "lib/net5.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.1722.21507"
+          }
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.FileProviders.Abstractions/5.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "5.0.0"
+        }
+      },
+      "Microsoft.Extensions.Hosting.Abstractions/5.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
+          "Microsoft.Extensions.FileProviders.Abstractions": "5.0.0"
+        }
+      },
       "Microsoft.Extensions.Logging/5.0.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "5.0.2",
@@ -1889,19 +1916,7 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/5.0.0.0": {
-        "compile": {
-          "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll": {}
-        },
-        "compileOnly": true
-      },
-      "Microsoft.Extensions.Diagnostics.HealthChecks/5.0.0.0": {
-        "compile": {
-          "Microsoft.Extensions.Diagnostics.HealthChecks.dll": {}
-        },
-        "compileOnly": true
-      },
-      "Microsoft.Extensions.FileProviders.Abstractions/5.0.0.0": {
+      "Microsoft.Extensions.FileProviders.Abstractions.Reference/5.0.0.0": {
         "compile": {
           "Microsoft.Extensions.FileProviders.Abstractions.dll": {}
         },
@@ -1931,7 +1946,7 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.Hosting.Abstractions/5.0.0.0": {
+      "Microsoft.Extensions.Hosting.Abstractions.Reference/5.0.0.0": {
         "compile": {
           "Microsoft.Extensions.Hosting.Abstractions.dll": {}
         },
@@ -3031,13 +3046,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "BCrypt/1.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-/ibwe2Sg7MJR26IrEzW2Rde9/+A+AYXB5Kf9w/8BVLDdzSfUe4W2M7i2efy1Wa9wHh1k0y81Q6h9Ty8C6IrUGA==",
-      "path": "bcrypt/1.0.0",
-      "hashPath": "bcrypt.1.0.0.nupkg.sha512"
-    },
     "BCrypt.Net/0.1.0": {
       "type": "package",
       "serviceable": true,
@@ -3198,6 +3206,34 @@
       "sha512": "sha512-ORj7Zh81gC69TyvmcUm9tSzytcy8AVousi+IVRAI8nLieQjOFryRusSFh7+aLk16FN9pQNqJAiMd7BTKINK0kA==",
       "path": "microsoft.extensions.dependencyinjection.abstractions/5.0.0",
       "hashPath": "microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Diagnostics.HealthChecks/5.0.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MU2a6TwziOiemUZDtxP5qjFMH7aFy1InAgRNsxkvMp8kGgZTJYFhsmfoGtS+fVngJOskt5Fdm/ezai2U0hgdcw==",
+      "path": "microsoft.extensions.diagnostics.healthchecks/5.0.17",
+      "hashPath": "microsoft.extensions.diagnostics.healthchecks.5.0.17.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/5.0.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qOnL44fyRFjWBHtg2yQy3sMvpjwlIUoGxYZAW9ryn1GHSFaV12V6rcI/rXREYBs70e4awBuHSPTJ2xKrev2vag==",
+      "path": "microsoft.extensions.diagnostics.healthchecks.abstractions/5.0.17",
+      "hashPath": "microsoft.extensions.diagnostics.healthchecks.abstractions.5.0.17.nupkg.sha512"
+    },
+    "Microsoft.Extensions.FileProviders.Abstractions/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iuZIiZ3mteEb+nsUqpGXKx2cGF+cv6gWPd5jqQI4hzqdiJ6I94ddLjKhQOuRW1lueHwocIw30xbSHGhQj0zjdQ==",
+      "path": "microsoft.extensions.fileproviders.abstractions/5.0.0",
+      "hashPath": "microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Hosting.Abstractions/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cbUOCePYBl1UhM+N2zmDSUyJ6cODulbtUd9gEzMFIK3RQDtP/gJsE08oLcBSXH3Q1RAQ0ex7OAB3HeTKB9bXpg==",
+      "path": "microsoft.extensions.hosting.abstractions/5.0.0",
+      "hashPath": "microsoft.extensions.hosting.abstractions.5.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging/5.0.0": {
       "type": "package",
@@ -4211,17 +4247,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/5.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.Extensions.Diagnostics.HealthChecks/5.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.Extensions.FileProviders.Abstractions/5.0.0.0": {
+    "Microsoft.Extensions.FileProviders.Abstractions.Reference/5.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
@@ -4246,7 +4272,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.Hosting.Abstractions/5.0.0.0": {
+    "Microsoft.Extensions.Hosting.Abstractions.Reference/5.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

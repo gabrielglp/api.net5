@@ -10,7 +10,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
-using BCrypt.Net;
 using Microsoft.AspNetCore.Authorization;
 
 namespace api.net5.Controllers.AuthController
