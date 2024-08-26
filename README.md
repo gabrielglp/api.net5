@@ -88,11 +88,16 @@ Update-database
 
 #### 3. Executar o Projeto
 
-Para rodar o projeto localmente, execute o seguinte comando na raiz do projeto:
+Para rodar o projeto localmente
 
+#### Clique em IIS Express na parte superior (onde tem um icone de play)
+- Abrirá o Swagger UI com o caminho que foi configurado a chamda da api no Front-end
+#### https://localhost:44339/swagger
+#### ou tambem execute o seguinte comando na raiz do projeto:
 ```bash
 dotnet run
 ```
+
 
 #### O projeto será iniciado no https://localhost:5001 (ou no URL especificado no seu ambiente).
 
