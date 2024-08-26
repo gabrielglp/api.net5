@@ -48,6 +48,7 @@ json
 }
 ```
 #### Componentes da String de Conexão
+`Lembrando LOCALHOST é um endereço fictício`
 - server: O nome do servidor ou o endereço IP do banco de dados. No exemplo acima, LOCALHOST é um placeholder para o servidor local ou uma instância do SQL Server.
 - database: O nome do banco de dados ao qual a aplicação se conecta. No exemplo, é APIClientDB.
 - Integrated Security=True: Indica que a autenticação do Windows será usada para se conectar ao banco de dados. Para autenticação com nome de usuário e senha, use User ID e Password em vez disso.
