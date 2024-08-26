@@ -1,0 +1,26 @@
+# Diretórios e arquivos do .NET
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Configurações específicas da IDE
+.vs/
+
+# Outras configurações que podem ser geradas automaticamente
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Arquivos de configuração do NuGet
+*.nuget.props
+*.nuget.targets
+*.nuget
+
+# Outras configurações
+*.log
+*.tmp
+*.swp
+*.swo

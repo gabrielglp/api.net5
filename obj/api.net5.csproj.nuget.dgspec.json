@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gabriel\\source\\repos\\api.net5\\api.net5.csproj": {}
+    "C:\\Users\\Gabriel\\Documents\\api.net5\\api.net5.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabriel\\source\\repos\\api.net5\\api.net5.csproj": {
+    "C:\\Users\\Gabriel\\Documents\\api.net5\\api.net5.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabriel\\source\\repos\\api.net5\\api.net5.csproj",
+        "projectUniqueName": "C:\\Users\\Gabriel\\Documents\\api.net5\\api.net5.csproj",
         "projectName": "api.net5",
-        "projectPath": "C:\\Users\\Gabriel\\source\\repos\\api.net5\\api.net5.csproj",
+        "projectPath": "C:\\Users\\Gabriel\\Documents\\api.net5\\api.net5.csproj",
         "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gabriel\\source\\repos\\api.net5\\obj\\",
+        "outputPath": "C:\\Users\\Gabriel\\Documents\\api.net5\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",

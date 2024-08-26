@@ -44,7 +44,7 @@ namespace api.net5
                     options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
                 });
 
-            // Configuração do Swagger para aceitar o token JWT
+            // Configuraï¿½ï¿½o do Swagger para aceitar o token JWT
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "api.net5", Version = "v1" });
@@ -73,8 +73,9 @@ namespace api.net5
             });
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CLIENT")));
+            services.AddTransient<ClientService>();
 
-            // Configuração do JWT
+            // Configuraï¿½ï¿½o do JWT
             var key = Encoding.ASCII.GetBytes(Configuration["Jwt:Secret"]);
             services.AddAuthentication(x =>
             {

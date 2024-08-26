@@ -81,11 +81,25 @@ namespace api.net5.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.clientes.Add(cliente);
-            await _context.SaveChangesAsync();
+            using (var transaction = await _context.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    _context.clientes.Add(cliente);
+                    await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetCliente), new { id = cliente.ClienteId }, cliente);
+                    await transaction.CommitAsync();
+
+                    return CreatedAtAction(nameof(GetCliente), new { id = cliente.ClienteId }, cliente);
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    return StatusCode(500, $"Internal server error: {ex.Message}");
+                }
+            }
         }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCliente(int id, ClientModel cliente)
@@ -95,25 +109,41 @@ namespace api.net5.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(cliente).State = EntityState.Modified;
-
-            try
+            using (var transaction = await _context.Database.BeginTransactionAsync())
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClienteExists(id))
+                try
                 {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                    var existingCliente = await _context.clientes.FindAsync(id);
+                    if (existingCliente == null)
+                    {
+                        return NotFound();
+                    }
 
-            return NoContent();
+                    _context.Entry(existingCliente).CurrentValues.SetValues(cliente);
+                    await _context.SaveChangesAsync();
+
+                    await transaction.CommitAsync();
+
+                    return Ok(new { message = "Client successfully updated." });
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ClienteExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        await transaction.RollbackAsync();
+                        throw;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    return StatusCode(500, $"Internal server error: {ex.Message}");
+                }
+            }
         }
 
         [HttpDelete("{id}")]
