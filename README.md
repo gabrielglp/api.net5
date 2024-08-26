@@ -25,13 +25,13 @@ Estes comandos criarão as tabelas e aplicarão as configurações iniciais ao b
 
 Antes de executar o projeto, certifique-se de que as seguintes dependências estejam instaladas:
 
-- `BCrypt` versão 1.0.0
 - `BCrypt.Net` versão 0.1.0
 - `Microsoft.AspNetCore.Authentication.JwtBearer` versão 5.0.17
 - `Microsoft.AspNetCore.Components` versão 5.0.17
 - `Microsoft.EntityFrameworkCore` versão 5.0.17
 - `Microsoft.EntityFrameworkCore.SqlServer` versão 5.0.17
 - `Microsoft.EntityFrameworkCore.Tools` versão 5.0.17
+- `Microsoft.Extensions.Diagnostics.HealthChecks` versão 5.0.17
 - `Swashbuckle.AspNetCore` versão 6.2.1
 
 ### 2. Configurar o Banco de Dados
